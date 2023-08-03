@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DesignPatterns.Adapter;
 using DesignPatterns.Bridge;
+using DesignPatterns.FactoryMethod;
 using DesignPatterns.Observer;
 using DesignPatterns.Strategy;
 
@@ -81,23 +82,56 @@ Console.Read();
 #endregion
 
 #region Observer Design Pattern
+/*
+//Create a Product with Out of Stock Status
+Subject RedMI = new Subject("Red MI Mobile", 10000, "Out Of Stock");
+//User Anurag will be created and the user1 object will be registered to the subject
+Observer user1 = new Observer("Anurag");
+user1.AddSubscriber(RedMI);
+//User Pranaya will be created and the user1 object will be registered to the subject
+Observer user2 = new Observer("Pranaya");
+user2.AddSubscriber(RedMI);
+//User Priyanka will be created and the user3 object will be registered to the subject
+Observer user3 = new Observer("Priyanka");
+user3.AddSubscriber(RedMI);
+Console.WriteLine("Red MI Mobile current state : " + RedMI.GetAvailability());
+Console.WriteLine();
+user3.RemoveSubscriber(RedMI);
+// Now the product is available
+RedMI.SetAvailability("Available");
+Console.Read();
+*/
+#endregion
+
+#region FactoryMethod
     /*
-    //Create a Product with Out of Stock Status
-    Subject RedMI = new Subject("Red MI Mobile", 10000, "Out Of Stock");
-    //User Anurag will be created and the user1 object will be registered to the subject
-    Observer user1 = new Observer("Anurag");
-    user1.AddSubscriber(RedMI);
-    //User Pranaya will be created and the user1 object will be registered to the subject
-    Observer user2 = new Observer("Pranaya");
-    user2.AddSubscriber(RedMI);
-    //User Priyanka will be created and the user3 object will be registered to the subject
-    Observer user3 = new Observer("Priyanka");
-    user3.AddSubscriber(RedMI);
-    Console.WriteLine("Red MI Mobile current state : " + RedMI.GetAvailability());
-    Console.WriteLine();
-    user3.RemoveSubscriber(RedMI);
-    // Now the product is available
-    RedMI.SetAvailability("Available");
-    Console.Read();
+    // The client code works with an instance of a concrete creator
+    // The CreateProduct will return the actual product instance via the product interface
+    //PlatinumFactory CreateProduct method will return an instance of Platinum Product via the CreditCard interface
+    ICreditCard creditCard = new PlatinumFactory().CreateProduct();
+    if (creditCard != null)
+    {
+        Console.WriteLine("Card Type : " + creditCard.GetCardType());
+        Console.WriteLine("Credit Limit : " + creditCard.GetCreditLimit());
+        Console.WriteLine("Annual Charge :" + creditCard.GetAnnualCharge());
+    }
+    else
+    {
+        Console.Write("Invalid Card Type");
+    }
+    Console.WriteLine("--------------");
+    //MoneyBackFactory CreateProduct method will return an instance of Platinum Product via the CreditCard interface
+    creditCard = new MoneyBackFactory().CreateProduct();
+    if (creditCard != null)
+    {
+        Console.WriteLine("Card Type : " + creditCard.GetCardType());
+        Console.WriteLine("Credit Limit : " + creditCard.GetCreditLimit());
+        Console.WriteLine("Annual Charge :" + creditCard.GetAnnualCharge());
+    }
+    else
+    {
+        Console.Write("Invalid Card Type");
+    }
+    Console.ReadLine();
     */
 #endregion
