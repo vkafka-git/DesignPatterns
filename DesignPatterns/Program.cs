@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using DesignPatterns.AbstractFactory;
 using DesignPatterns.Adapter;
 using DesignPatterns.Bridge;
 using DesignPatterns.FactoryMethod;
@@ -104,34 +105,60 @@ Console.Read();
 #endregion
 
 #region FactoryMethod
-    /*
-    // The client code works with an instance of a concrete creator
-    // The CreateProduct will return the actual product instance via the product interface
-    //PlatinumFactory CreateProduct method will return an instance of Platinum Product via the CreditCard interface
-    ICreditCard creditCard = new PlatinumFactory().CreateProduct();
-    if (creditCard != null)
-    {
-        Console.WriteLine("Card Type : " + creditCard.GetCardType());
-        Console.WriteLine("Credit Limit : " + creditCard.GetCreditLimit());
-        Console.WriteLine("Annual Charge :" + creditCard.GetAnnualCharge());
-    }
-    else
-    {
-        Console.Write("Invalid Card Type");
-    }
-    Console.WriteLine("--------------");
-    //MoneyBackFactory CreateProduct method will return an instance of Platinum Product via the CreditCard interface
-    creditCard = new MoneyBackFactory().CreateProduct();
-    if (creditCard != null)
-    {
-        Console.WriteLine("Card Type : " + creditCard.GetCardType());
-        Console.WriteLine("Credit Limit : " + creditCard.GetCreditLimit());
-        Console.WriteLine("Annual Charge :" + creditCard.GetAnnualCharge());
-    }
-    else
-    {
-        Console.Write("Invalid Card Type");
-    }
-    Console.ReadLine();
-    */
+/*
+// The client code works with an instance of a concrete creator
+// The CreateProduct will return the actual product instance via the product interface
+//PlatinumFactory CreateProduct method will return an instance of Platinum Product via the CreditCard interface
+ICreditCard creditCard = new PlatinumFactory().CreateProduct();
+if (creditCard != null)
+{
+    Console.WriteLine("Card Type : " + creditCard.GetCardType());
+    Console.WriteLine("Credit Limit : " + creditCard.GetCreditLimit());
+    Console.WriteLine("Annual Charge :" + creditCard.GetAnnualCharge());
+}
+else
+{
+    Console.Write("Invalid Card Type");
+}
+Console.WriteLine("--------------");
+//MoneyBackFactory CreateProduct method will return an instance of Platinum Product via the CreditCard interface
+creditCard = new MoneyBackFactory().CreateProduct();
+if (creditCard != null)
+{
+    Console.WriteLine("Card Type : " + creditCard.GetCardType());
+    Console.WriteLine("Credit Limit : " + creditCard.GetCreditLimit());
+    Console.WriteLine("Annual Charge :" + creditCard.GetAnnualCharge());
+}
+else
+{
+    Console.Write("Invalid Card Type");
+}
+Console.ReadLine();
+*/
+#endregion
+
+#region Abstract Factory
+    IVehicleFactory honda = new HondaFactory();
+    VehicleClient hondaclient = new VehicleClient(honda, "Regular");
+
+    Console.WriteLine("******* Honda **********");
+    Console.WriteLine(hondaclient.GetBikeName());
+    Console.WriteLine(hondaclient.GetScooterName());
+
+    hondaclient = new VehicleClient(honda, "Sports");
+    Console.WriteLine(hondaclient.GetBikeName());
+    Console.WriteLine(hondaclient.GetScooterName());
+
+    IVehicleFactory hero = new HeroFactory();
+    VehicleClient heroclient = new VehicleClient(hero, "Regular");
+
+    Console.WriteLine("******* Hero **********");
+    Console.WriteLine(heroclient.GetBikeName());
+    Console.WriteLine(heroclient.GetScooterName());
+
+    heroclient = new VehicleClient(hero, "Sports");
+    Console.WriteLine(heroclient.GetBikeName());
+    Console.WriteLine(heroclient.GetScooterName());
+
+    Console.ReadKey();
 #endregion
